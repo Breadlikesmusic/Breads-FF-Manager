@@ -185,11 +185,6 @@
             transform: scale(1.02);
         }
 
-        .btn-download .icon {
-            font-size: 1.1rem;
-            line-height: 1;
-        }
-
         .btn-discord {
             background: #1a1a2a;
             border: 1px solid #3a3a5a;
@@ -210,6 +205,20 @@
             border-color: #5a5a8a;
             color: #fff;
             transform: scale(1.02);
+        }
+
+        .sign-badge {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            color: #aaa;
+            padding: 0.7rem 1.4rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
         .footer {
@@ -365,7 +374,7 @@
             <div class="info-card">
                 <div class="title">About</div>
                 <p>
-                    This was originally just a project made for a friend of mine but i decided to release it. Use it to do whatever im not your mom.
+                    This was originally just a project made for a friend of mine but I decided to release it. Use it to do whatever I'm not your mom.
                 </p>
             </div>
 
@@ -374,7 +383,7 @@
                 <ul>
                     <li><strong>Flag editing</strong> – edit fast flags easily</li>
                     <li><strong>Preset profiles</strong> – custom and basic presets</li>
-                    <li><strong>Import / Export</strong> – full JSON import and expoer support</li>
+                    <li><strong>Import / Export</strong> – full JSON import and export support</li>
                     <li><strong>No installation</strong> – really easy use</li>
                 </ul>
             </div>
@@ -404,15 +413,12 @@
         <div class="download-section">
             <div class="download-info">
                 <span class="status-dot"></span>
-                <strong>Ready for download</strong> – no installation, just run the .exe
+                <strong>Ready for download</strong> – no inst required (exe self contained)
             </div>
-            <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
-                <a href="#" id="downloadBtn" class="btn-download">
-                    <span class="icon">↓</span> Download for Windows
-                </a>
-                <a href="https://discord.gg/7R8UwfJ9AC" target="_blank" class="btn-discord">
-                    <span class="icon"></span> Join Discord
-                </a>
+            <div style="display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center;">
+                <span class="sign-badge">Windows 10/11</span>
+                <a href="#" id="downloadBtn" class="btn-download">Download for Windows</a>
+                <a href="https://discord.gg/7R8UwfJ9AC" target="_blank" class="btn-discord">Join Discord</a>
             </div>
         </div>
 
@@ -438,7 +444,7 @@
                 <span class="date">29 August 2026</span>
                 <ul>
                     <li>Reworked old code</li>
-                    <li>Added falback to JSON imports</li>
+                    <li>Added fallback to JSON imports</li>
                     <li>Added custom font support</li>
                     <li>Custom user presets (save/load/delete)</li>
                     <li>Launch live Roblox option</li>
@@ -448,7 +454,6 @@
                 </ul>
             </div>
 
-            <p style="color: #555; font-size: 0.7rem; margin-top: 1rem;">Older versions are not available for download.</p>
         </div>
     </div>
 
