@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Breads FastFlags Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #d4d4d4;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 0;
+            padding: 2.5rem 2.8rem;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.9);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid #1a1a1a;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-left h1 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #fff;
+            letter-spacing: -0.3px;
+        }
+
+        .header-left .tagline {
+            font-size: 0.85rem;
+            color: #777;
+            font-weight: 300;
+            margin-top: 2px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .version-badge {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            padding: 0.25rem 1rem;
+            border-radius: 0;
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 700px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 1.5rem;
+            }
+        }
+
+        .info-card {
+            background: #0d0d0d;
+            border: 1px solid #1c1c1c;
+            border-radius: 0;
+            padding: 1.2rem 1.4rem;
+            transition: border-color 0.2s;
+        }
+
+        .info-card:hover {
+            border-color: #2a2a2a;
+        }
+
+        .info-card .title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #555;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            border-bottom: 1px solid #161616;
+            padding-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #b0b0b0;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+            font-size: 0.85rem;
+            color: #b0b0b0;
+        }
+
+        .info-card ul li {
+            padding: 0.2rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .info-card ul li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #2a7a4a;
+        }
+
+        .info-card strong {
+            color: #ddd;
+            font-weight: 400;
+        }
+
+        .download-section {
+            margin-top: 2.2rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid #1a1a1a;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .download-info {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        .download-info strong {
+            color: #bbb;
+            font-weight: 400;
+        }
+
+        .btn-download {
+            background: #1a2a22;
+            border: 1px solid #2a4a3a;
+            color: #c0d4c8;
+            padding: 0.7rem 2.2rem;
+            border-radius: 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .btn-download:hover {
+            background: #2a4a3a;
+            border-color: #3a6a4a;
+            color: #fff;
+            transform: scale(1.02);
+        }
+
+        .btn-download .icon {
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        .btn-discord {
+            background: #1a1a2a;
+            border: 1px solid #3a3a5a;
+            color: #c0c0d8;
+            padding: 0.7rem 2.2rem;
+            border-radius: 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .btn-discord:hover {
+            background: #2a2a4a;
+            border-color: #5a5a8a;
+            color: #fff;
+            transform: scale(1.02);
+        }
+
+        .footer {
+            margin-top: 2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #141414;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: #444;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .footer a {
+            color: #555;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer a:hover {
+            color: #888;
+        }
+
+        .footer .changelog-link {
+            cursor: pointer;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #3a7a4a;
+            border-radius: 0;
+            margin-right: 6px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .changelog-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .changelog-overlay.active {
+            display: flex;
+        }
+
+        .changelog-modal {
+            background: #141414;
+            border: 1px solid #2a2a2a;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            padding: 2rem;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .changelog-modal h2 {
+            color: #ddd;
+            font-weight: 400;
+            border-bottom: 1px solid #222;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .changelog-modal .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: #555;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .changelog-modal .close-btn:hover {
+            color: #aaa;
+        }
+
+        .changelog-entry {
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #1a1a1a;
+            padding-bottom: 1rem;
+        }
+
+        .changelog-entry:last-child {
+            border-bottom: none;
+        }
+
+        .changelog-entry .version {
+            font-weight: 500;
+            color: #ccc;
+        }
+
+        .changelog-entry .date {
+            font-size: 0.7rem;
+            color: #555;
+            margin-left: 1rem;
+        }
+
+        .changelog-entry ul {
+            list-style: none;
+            padding: 0.3rem 0 0 0.5rem;
+        }
+
+        .changelog-entry ul li {
+            font-size: 0.8rem;
+            color: #aaa;
+            padding: 0.15rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .changelog-entry ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #2a7a4a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <div class="header-left">
+                <h1>Breads FastFlags Manager</h1>
+                <div class="tagline">A simple tool to manage Roblox FFs made with love</div>
+            </div>
+            <div class="header-right">
+                <span class="version-badge">v1.1.1</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+
+            <div class="info-card">
+                <div class="title">About</div>
+                <p>
+                    This was originally just a project made for a friend of mine but i decided to release it. Use it to do whatever im not your mom.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <div class="title">Features</div>
+                <ul>
+                    <li><strong>Flag editing</strong> – edit fast flags easily</li>
+                    <li><strong>Preset profiles</strong> – custom and basic presets</li>
+                    <li><strong>Import / Export</strong> – full JSON import and expoer support</li>
+                    <li><strong>No installation</strong> – really easy use</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <div class="title">How to use</div>
+                <ul>
+                    <li>Download the <strong>.exe</strong> from this page</li>
+                    <li>Run it – <strong>no installation</strong> required</li>
+                    <li>Adjust FastFlags using the interface</li>
+                    <li>Click <strong>Apply Flags</strong> – the changes are saved immediately</li>
+                    <li>Restart Roblox for the new settings to take effect</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <div class="title">Compatibility</div>
+                <ul>
+                    <li><strong>Windows 10 / 11</strong> (64‑bit)</li>
+                    <li><strong>Roblox</strong> – works with the official client</li>
+                    <li><strong>No dependencies</strong> – runs standalone</li>
+                    <li><strong>100% safe</strong> – doesn't modify game memory</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <div class="download-info">
+                <span class="status-dot"></span>
+                <strong>Ready for download</strong> – no installation, just run the .exe
+            </div>
+            <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+                <a href="#" id="downloadBtn" class="btn-download">
+                    <span class="icon">↓</span> Download for Windows
+                </a>
+                <a href="https://discord.gg/7R8UwfJ9AC" target="_blank" class="btn-discord">
+                    <span class="icon"></span> Join Discord
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <span>Free to use – made for the Roblox community with love</span>
+            <span>
+                <span style="color:#444;">·</span>
+                <a href="#" class="changelog-link" id="changelogToggle">Changelog</a>
+                <span style="color:#444;">·</span>
+                <a href="#">Report issue</a>
+            </span>
+        </div>
+
+    </div>
+
+    <div class="changelog-overlay" id="changelogOverlay">
+        <div class="changelog-modal">
+            <button class="close-btn" id="changelogClose">&times;</button>
+            <h2>Changelog</h2>
+
+            <div class="changelog-entry">
+                <span class="version">v1.1.1</span>
+                <span class="date">29 August 2026</span>
+                <ul>
+                    <li>Reworked old code</li>
+                    <li>Added falback to JSON imports</li>
+                    <li>Added custom font support</li>
+                    <li>Custom user presets (save/load/delete)</li>
+                    <li>Launch live Roblox option</li>
+                    <li>Theme support (Dark, Light, Gray, Custom)</li>
+                    <li>Library of known FastFlags with descriptions</li>
+                    <li>Launch and kill Roblox from the tool</li>
+                </ul>
+            </div>
+
+            <p style="color: #555; font-size: 0.7rem; margin-top: 1rem;">Older versions are not available for download.</p>
+        </div>
+    </div>
+
+    <script>
+        const downloadUrl = 'https://github.com/Breadlikesmusic/Breads-FF-Manager/releases/download/1.1.1/Breads.FF.Manager.v1.1.1.exe';
+        document.getElementById('downloadBtn').href = downloadUrl;
+
+        const overlay = document.getElementById('changelogOverlay');
+        const toggleBtn = document.getElementById('changelogToggle');
+        const closeBtn = document.getElementById('changelogClose');
+
+        function openChangelog() {
+            overlay.classList.add('active');
+        }
+
+        function closeChangelog() {
+            overlay.classList.remove('active');
+        }
+
+        toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openChangelog();
+        });
+
+        closeBtn.addEventListener('click', closeChangelog);
+
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                closeChangelog();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                closeChangelog();
+            }
+        });
+    </script>
+</body>
+</html>
