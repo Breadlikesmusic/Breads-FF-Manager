@@ -1,7 +1,5 @@
-Hello and welcome to my little project. Get the exe from the releases to download the newest version.
-Gonna write a proper readme soon.
+Very simple fast flag manager for Roblox. (note that this does not let you lauch disallowed flags.)
 
-Versions before 1.1.0 will be archived.
+It works by writing into the json file holding all the fast flags in roblox.
 
-For questions, tutorials, presets, themes and suggestions join the discord::
-https://discord.gg/k978VSfnZ5
+I was too lazy to put the source in here. Ill eventually get to it.
